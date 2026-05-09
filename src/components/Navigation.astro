@@ -1,0 +1,331 @@
+---
+import fr from '../i18n/fr.json';
+import en from '../i18n/en.json';
+
+const { lang } = Astro.props;
+const t = lang === 'en' ? en : fr;
+const basePath = lang === 'en' ? '/en/' : '/fr/';
+const alternatePath = lang === 'en' ? '/fr/' : '/en/';
+---
+
+<!-- Desktop top nav -->
+<nav id="main-nav" class="fixed top-0 left-0 w-full z-50 px-4 md:px-6 py-4 md:py-5 font-sans text-xs uppercase tracking-widest text-ivoire transition-all duration-500">
+  <div class="nav-shell mx-auto flex w-full max-w-[1800px] items-center justify-between">
+    <a
+      href={basePath}
+      class="link-fancy"
+      data-cursor="link"
+      data-magnetic
+      data-magnetic-radius="100"
+      data-magnetic-amp="8"
+      data-magnetic-inner="img"
+      data-magnetic-inner-amp="4"
+      aria-label="Accueil"
+    >
+      <img src="/wordmark-logo-white.svg" alt="Galerie des Orfevres" class="h-6 md:h-7 w-auto block" id="nav-logo" />
+    </a>
+
+    <!-- Desktop links -->
+    <div class="hidden md:flex items-center gap-10">
+      <a href={`${basePath}#gallery`} data-scroll-link class="link-fancy hover:text-or-fonce transition-colors">{t['nav.gallery']}</a>
+      <a href={`${basePath}#history`} data-scroll-link class="link-fancy hover:text-or-fonce transition-colors">{t['nav.history']}</a>
+      <a href={`${basePath}#contact`} data-scroll-link class="link-fancy hover:text-or-fonce transition-colors">{t['nav.contact']}</a>
+    </div>
+
+    <!-- Desktop right actions -->
+    <div class="hidden md:flex items-center gap-4">
+      <button
+        id="theme-toggle"
+        class="theme-toggle"
+        type="button"
+        aria-label="Switch color theme"
+        aria-pressed="false"
+        data-theme-toggle
+      >
+        <span class="theme-toggle__sun" aria-hidden="true"></span>
+        <span class="theme-toggle__moon" aria-hidden="true"></span>
+      </button>
+      <a href="/fr/" data-language-switch data-lang-target="fr" class={`link-fancy hover:text-or-fonce transition-colors text-[10px] ${lang === 'fr' ? 'text-or-fonce' : ''}`}>FR</a>
+      <span class="opacity-40">/</span>
+      <a href="/en/" data-language-switch data-lang-target="en" class={`link-fancy hover:text-or-fonce transition-colors text-[10px] ${lang === 'en' ? 'text-or-fonce' : ''}`}>EN</a>
+    </div>
+
+    <!-- Mobile: slim top bar — only logo + theme + lang -->
+    <div class="flex md:hidden items-center gap-2.5">
+      <button
+        class="theme-toggle"
+        type="button"
+        aria-label="Switch color theme"
+        aria-pressed="false"
+        data-theme-toggle
+      >
+        <span class="theme-toggle__sun" aria-hidden="true"></span>
+        <span class="theme-toggle__moon" aria-hidden="true"></span>
+      </button>
+      <a
+        href={alternatePath}
+        data-language-switch
+        data-lang-target={lang === 'en' ? 'fr' : 'en'}
+        class="mobile-lang-switch"
+        aria-label={lang === 'en' ? 'Version francaise' : 'English version'}
+      >
+        {lang === 'en' ? 'FR' : 'EN'}
+      </a>
+    </div>
+  </div>
+</nav>
+
+<!-- =====================================================
+     MOBILE BOTTOM NAVIGATION (iOS-style)
+     ===================================================== -->
+<nav class="bottom-nav" id="bottom-nav" aria-label="Navigation principale">
+  <a href={`${basePath}#gallery`} data-scroll-link class="bottom-nav__tab" data-section="gallery" id="btn-tab-gallery">
+    <span class="bottom-nav__icon" aria-hidden="true">
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+        <rect x="2" y="2" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.2"/>
+        <rect x="11" y="2" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.2"/>
+        <rect x="2" y="11" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.2"/>
+        <rect x="11" y="11" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.2"/>
+      </svg>
+      <span class="bottom-nav__dot"></span>
+    </span>
+    <span>{t['nav.gallery']}</span>
+  </a>
+
+  <a href={`${basePath}#history`} data-scroll-link class="bottom-nav__tab" data-section="history" id="btn-tab-history">
+    <span class="bottom-nav__icon" aria-hidden="true">
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+        <circle cx="10" cy="10" r="7.5" stroke="currentColor" stroke-width="1.2"/>
+        <path d="M10 6v4l2.5 2.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+      </svg>
+      <span class="bottom-nav__dot"></span>
+    </span>
+    <span>{t['nav.history']}</span>
+  </a>
+
+  <a href={`${basePath}#services`} data-scroll-link class="bottom-nav__tab" data-section="services" id="btn-tab-services">
+    <span class="bottom-nav__icon" aria-hidden="true">
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+        <path d="M3 5h14M3 10h14M3 15h8" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+      </svg>
+      <span class="bottom-nav__dot"></span>
+    </span>
+    <span>{lang === 'en' ? 'Services' : 'Services'}</span>
+  </a>
+
+  <a href={`${basePath}#contact`} data-scroll-link class="bottom-nav__tab" data-section="contact" id="btn-tab-contact">
+    <span class="bottom-nav__icon" aria-hidden="true">
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+        <path d="M3 4h14a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1z" stroke="currentColor" stroke-width="1.2"/>
+        <path d="M2 5l8 6 8-6" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+      </svg>
+      <span class="bottom-nav__dot"></span>
+    </span>
+    <span>{t['nav.contact']}</span>
+  </a>
+</nav>
+
+<script>
+  import { gsap } from "../lib/gsap-config";
+
+  if (typeof window !== "undefined") {
+    const setup = () => {
+      const nav = document.getElementById("main-nav");
+      const bottomNav = document.getElementById("bottom-nav");
+
+      // ---- Langue switcher ----
+      document.querySelectorAll<HTMLAnchorElement>("[data-language-switch]").forEach((link) => {
+        if (link.dataset.langBound) return;
+        link.dataset.langBound = "true";
+        link.addEventListener("click", () => {
+          if (!window.location.hash) return;
+          const target = link.dataset.langTarget === "en" ? "/en/" : "/fr/";
+          link.href = `${target}${window.location.hash}`;
+        });
+      });
+
+      // ---- Theme toggle ----
+      const syncThemeButtons = () => {
+        const isLight = document.documentElement.dataset.theme === "light";
+        document.querySelectorAll<HTMLButtonElement>("[data-theme-toggle]").forEach((button) => {
+          button.setAttribute("aria-pressed", String(isLight));
+          button.dataset.themeState = isLight ? "light" : "dark";
+        });
+      };
+      syncThemeButtons();
+      document.querySelectorAll<HTMLButtonElement>("[data-theme-toggle]").forEach((button) => {
+        if (button.dataset.themeBound) return;
+        button.dataset.themeBound = "true";
+        button.addEventListener("click", () => {
+          const nextTheme = document.documentElement.dataset.theme === "light" ? "dark" : "light";
+          document.documentElement.dataset.theme = nextTheme;
+          localStorage.setItem("orfevres-theme", nextTheme);
+          syncThemeButtons();
+        });
+      });
+
+      // ---- Scroll: is-scrolled ----
+      if (nav && !nav.dataset.scrollBound) {
+        nav.dataset.scrollBound = "true";
+        const updateNav = () => { nav.classList.toggle("is-scrolled", window.scrollY > 24); };
+        updateNav();
+        window.addEventListener("scroll", updateNav, { passive: true });
+      }
+
+      // ---- Bottom nav active state via IntersectionObserver ----
+      if (bottomNav) {
+        const sections = ["gallery", "history", "services", "contact"];
+        const tabs = sections.map((id) => document.getElementById(`btn-tab-${id}`));
+        const sectionEls = sections.map((id) => document.getElementById(id));
+
+        const setActive = (id: string) => {
+          tabs.forEach((tab) => tab?.classList.remove("is-active"));
+          const idx = sections.indexOf(id);
+          if (idx >= 0) tabs[idx]?.classList.add("is-active");
+        };
+
+        const observer = new IntersectionObserver(
+          (entries) => {
+            for (const entry of entries) {
+              if (entry.isIntersecting) {
+                setActive(entry.target.id);
+                break;
+              }
+            }
+          },
+          { rootMargin: "-40% 0px -40% 0px", threshold: 0 }
+        );
+
+        sectionEls.forEach((el) => { if (el) observer.observe(el); });
+      }
+
+      // ---- Logo animation (first load only) ----
+      const logo = document.getElementById("nav-logo");
+      if (!logo) return;
+      const alreadySeen = sessionStorage.getItem("orfevres-logo-shown") === "1";
+      if (alreadySeen || window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        gsap.set(logo, { opacity: 1, y: 0 });
+        return;
+      }
+      gsap.fromTo(
+        logo,
+        { opacity: 0, y: -8, scale: 0.96 },
+        {
+          opacity: 1, y: 0, scale: 1,
+          duration: 1.2, ease: "power3.out", delay: 0.2,
+          onComplete: () => sessionStorage.setItem("orfevres-logo-shown", "1"),
+        }
+      );
+    };
+
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", setup, { once: true });
+    } else {
+      setup();
+    }
+    document.addEventListener("astro:page-load", setup);
+  }
+</script>
+
+<style>
+  .nav-shell {
+    border-radius: var(--radius-ui);
+    transition: background 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease, padding 0.35s ease;
+  }
+
+  .theme-toggle {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 44px;
+    height: 26px;
+    padding: 3px;
+    border: 1px solid rgba(212, 184, 134, 0.3);
+    border-radius: 999px;
+    background: rgba(244, 239, 230, 0.06);
+    color: currentColor;
+    cursor: pointer;
+    transition: background 0.3s ease, border-color 0.3s ease;
+  }
+
+  .theme-toggle::before {
+    content: "";
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 18px;
+    height: 18px;
+    border-radius: 999px;
+    background: #D4B886;
+    box-shadow: 0 0 16px rgba(212, 184, 134, 0.35);
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .theme-toggle[data-theme-state="light"]::before {
+    transform: translateX(18px);
+  }
+
+  .theme-toggle__sun,
+  .theme-toggle__moon {
+    position: relative;
+    z-index: 1;
+    width: 9px;
+    height: 9px;
+    border-radius: 999px;
+  }
+  .theme-toggle__sun { background: currentColor; opacity: 0.75; }
+  .theme-toggle__moon { border: 1px solid currentColor; opacity: 0.75; }
+
+  #main-nav.is-scrolled .nav-shell {
+    padding-block: 0.7rem;
+    padding-inline: 1rem;
+    border: 1px solid rgba(244, 239, 230, 0.10);
+    background: rgba(10, 10, 10, 0.62);
+    box-shadow: 0 18px 70px rgba(0, 0, 0, 0.28);
+    backdrop-filter: blur(22px) saturate(160%);
+    -webkit-backdrop-filter: blur(22px) saturate(160%);
+  }
+
+  :global(html[data-theme="light"]) #main-nav.is-scrolled,
+  :global(html[data-theme="light"]) #main-nav.is-menu-open,
+  :global(html[data-theme="light"]) #main-nav.is-scrolled .nav-shell,
+  :global(html[data-theme="light"]) .mobile-lang-switch {
+    color: #17120F;
+  }
+
+  @media (max-width: 767px) {
+    #main-nav {
+      padding-top: max(0.75rem, env(safe-area-inset-top));
+      padding-inline: 1rem;
+    }
+
+    .nav-shell {
+      padding: 0.6rem 0.75rem;
+      min-height: 52px;
+      border: 1px solid rgba(244, 239, 230, 0.10);
+      background: rgba(10, 10, 10, 0.52);
+      backdrop-filter: blur(20px) saturate(140%);
+      -webkit-backdrop-filter: blur(20px) saturate(140%);
+      border-radius: var(--radius-ui);
+    }
+
+    .mobile-lang-switch {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 38px;
+      height: 38px;
+      border: 1px solid rgba(212, 184, 134, 0.25);
+      background: rgba(244, 239, 230, 0.05);
+      color: #F4EFE6;
+      border-radius: 999px;
+      font-size: 0.65rem;
+      letter-spacing: 0.16em;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .nav-shell { transition: none; }
+  }
+</style>

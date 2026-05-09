@@ -1,0 +1,48 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Navigation from '../../components/Navigation.astro';
+import Hero from '../../components/Hero.astro';
+import ScrollVideo from '../../components/ScrollVideo.astro';
+import Gallery from '../../components/Gallery.astro';
+import Parallax3DSection from '../../components/Parallax3DSection.astro';
+import Events from '../../components/Events.astro';
+import History from '../../components/History.astro';
+import Stats from '../../components/Stats.astro';
+import Services from '../../components/Services.astro';
+import ScrollDiptyque from '../../components/ScrollDiptyque.astro';
+import MonogramSection from '../../components/MonogramSection.astro';
+import ContactCTA from '../../components/ContactCTA.astro';
+import Footer from '../../components/Footer.astro';
+---
+
+<BaseLayout title="Galerie des Orfèvres | Espace d'Art Parisien" lang="fr">
+  <Navigation lang="fr" />
+
+  <main>
+    <Hero lang="fr" />
+    <ScrollVideo lang="fr" />
+
+    <Gallery lang="fr" />
+
+    <!-- Section 3D Parallaxe interstitielle -->
+    <Parallax3DSection lang="fr" />
+
+    <Events lang="fr" />
+
+    <History lang="fr" />
+
+    <Stats lang="fr" />
+    <Services lang="fr" />
+
+    <!-- Diptyque cinématographique : 2 vidéos côte à côte scrubbed en synchro -->
+    <ScrollDiptyque lang="fr" />
+
+    <!-- Section monogramme GO + œuvres flottantes -->
+    <MonogramSection lang="fr" />
+
+    <!-- CTA Contact -->
+    <ContactCTA lang="fr" />
+  </main>
+
+  <Footer lang="fr" />
+</BaseLayout>

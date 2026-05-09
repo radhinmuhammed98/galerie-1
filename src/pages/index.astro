@@ -1,0 +1,43 @@
+---
+// Redirect page with elegant fallback UI
+---
+<!doctype html>
+<html lang="fr" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Galerie des Orfèvres</title>
+    <style>
+      body {
+        margin: 0;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background-color: #0A0A0A;
+        color: #F4EFE6;
+        font-family: "Cormorant Garamond", serif;
+        overflow: hidden;
+      }
+      .loader {
+        font-size: 2rem;
+        font-weight: 300;
+        letter-spacing: 0.15em;
+        opacity: 0;
+        animation: pulse 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+      }
+      @keyframes pulse {
+        0%, 100% { opacity: 0.2; }
+        50% { opacity: 1; }
+      }
+    </style>
+    <script>
+      const pref = navigator.language.startsWith('en') ? '/en/' : '/fr/';
+      window.location.replace(pref);
+    </script>
+  </head>
+  <body>
+    <div class="loader">GO</div>
+  </body>
+</html>
