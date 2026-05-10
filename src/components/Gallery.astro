@@ -162,7 +162,8 @@ const items: GalleryItem[] = [
       // --- Ghost text parallax ---
       const ghost = section.querySelector<HTMLElement>(".gallery-ghost-text");
       if (ghost && !reduced) {
-        gsap.to(ghost, { y: -60, ease: "none",
+        gsap.set(ghost, { xPercent: -50, yPercent: -50 });
+        gsap.to(ghost, { yPercent: -70, rotateX: 15, rotateY: -8, scale: 0.88, ease: "none",
           scrollTrigger: { trigger: section, start: "top bottom", end: "bottom top", scrub: 1.5 } });
       }
 

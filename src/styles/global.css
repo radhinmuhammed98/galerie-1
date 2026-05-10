@@ -446,10 +446,34 @@
       linear-gradient(to right, rgba(184, 147, 90, 0.12) 1px, transparent 1px),
       linear-gradient(to bottom, rgba(184, 147, 90, 0.12) 1px, transparent 1px);
     background-size: 8vw 4vw;
-    -webkit-mask-image: linear-gradient(to top, rgba(0,0,0,0.6) 0%, transparent 100%);
     mask-image: linear-gradient(to top, rgba(0,0,0,0.6) 0%, transparent 100%);
   }
   @media (max-width: 767px) {
     .perspective-grid-floor { display: none; }
+  }
+
+  /* =====================================================
+     FLOATING PHYSICS (Antigravity Bobbing)
+     ===================================================== */
+  @keyframes float-bob {
+    0% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(var(--float-y, -12px)) rotate(var(--float-rot, 1deg)); }
+    100% { transform: translateY(0px) rotate(0deg); }
+  }
+
+  .animate-float {
+    /* Variables for staggering to avoid a mechanical look */
+    --float-dur: 6s;
+    --float-delay: 0s;
+    --float-y: -14px;
+    --float-rot: 0.5deg;
+    
+    will-change: transform;
+    animation: float-bob var(--float-dur) cubic-bezier(0.45, 0, 0.55, 1) infinite;
+    animation-delay: var(--float-delay);
+  }
+  
+  @media (prefers-reduced-motion: reduce) {
+    .animate-float { animation: none !important; }
   }
 }

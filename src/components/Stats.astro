@@ -82,9 +82,9 @@ const stats = [
       const items = section.querySelectorAll<HTMLElement>(".stat-item");
       if (!reduced) {
         gsap.fromTo(items,
-          { opacity: 0, rotateX: -45, z: -120, y: 60 },
-          { opacity: 1, rotateX: 0, z: 0, y: 0,
-            duration: 1.0, stagger: 0.12, ease: "power4.out",
+          { opacity: 0, scale: 0.85, rotateX: -45, z: -120, y: 60 },
+          { opacity: 1, scale: 1, rotateX: 0, z: 0, y: 0,
+            duration: 1.4, stagger: 0.12, ease: "expo.out",
             scrollTrigger: { trigger: section, start: "top 78%", once: true } }
         );
       }

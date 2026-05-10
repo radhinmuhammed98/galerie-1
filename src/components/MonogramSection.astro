@@ -54,9 +54,11 @@ const artworks = [
       <div class="monogram-artworks relative h-[480px] md:h-[620px]">
         {artworks.map((art, i) => (
           <div
-            class="monogram-artwork-card absolute overflow-hidden bg-gris-pierre shadow-2xl opacity-0"
+            class="monogram-artwork-card absolute overflow-hidden bg-gris-pierre shadow-2xl opacity-0 animate-float"
             data-artwork-index={i}
             style={`
+              --float-delay: ${i * -1.8}s;
+              --float-dur: ${5 + i}s;
               width: ${i === 0 ? '72%' : i === 1 ? '60%' : '55%'};
               aspect-ratio: 3/4;
               top: ${i === 0 ? '0%' : i === 1 ? '12%' : '28%'};
